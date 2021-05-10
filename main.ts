@@ -1,3 +1,25 @@
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile19`, function (sprite, location) {
+    mySprite.setImage(img`
+        . . . . . . . . . . b 5 b . . . 
+        . . . . . . . . . b 5 b . . . . 
+        . e e . . . . . . b c . . . . . 
+        f f f f . . b b b b b b . . . . 
+        f f f f . b b 5 5 5 5 5 b . . . 
+        . e e . b b 5 d 1 f 5 5 d f . . 
+        . e e . b 5 5 1 f f 5 d 4 c . . 
+        . e e . b 5 5 d f b d d 4 4 . . 
+        b d d d b b d 5 5 5 4 4 4 4 4 b 
+        b b d 5 5 5 b 5 5 4 4 4 4 4 b . 
+        b d c 5 5 5 5 d 5 5 5 5 5 b . . 
+        c d d c d 5 5 b 5 5 5 5 5 5 b . 
+        c b d d c c b 5 5 5 5 5 5 5 b . 
+        . c d d d d d d 5 5 5 5 5 d b . 
+        . . c b d d d d d 5 5 5 b b . . 
+        . . . c c c c c c c c b b . . . 
+        `)
+    game.showLongText("You have retrieved the hammer of strength. Hold on to this in case you need it later.", DialogLayout.Bottom)
+    tiles.placeOnRandomTile(mySprite, assets.tile`myTile20`)
+})
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
     jump += -1
 })
@@ -5,6 +27,9 @@ function level1 () {
     tiles.setTilemap(tilemap`level1`)
     tiles.placeOnRandomTile(mySprite, assets.tile`myTile3`)
 }
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile22`, function (sprite, location) {
+    game.showLongText("Next level! enjoy your Dinnfer!", DialogLayout.Bottom)
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (mySprite.isHittingTile(CollisionDirection.Bottom)) {
         if (jump < 1) {
@@ -17,9 +42,145 @@ scene.onOverlapTile(SpriteKind.Player, sprites.castle.tilePath2, function (sprit
     game.showLongText("try again", DialogLayout.Bottom)
     tiles.placeOnRandomTile(mySprite, assets.tile`myTile3`)
 })
-function level2 () {
-    tiles.setTilemap(tilemap`level1`)
+function level3 () {
+    scene.setBackgroundImage(img`
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccdddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccccccccccccccccccccccccccccdddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccdddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccdddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccdddddddddddddddddddddddddddddffddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccdddddddddddddddddddddddddddddffddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccccccccccccddddddddddddddddddddddddddddffdddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccdddddddddddddddddddddddddddddfdddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccccccccccdddddddddddddddddddddddddddddfdddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccdddddddddddddddddddddddddddddffddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccddddddddddfffddddddddddddddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccddddddddffdddddddddddddddddddddddddddddddddddddddddddddddfdddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccccdddddddddfdddddddddddddddddddddddddddddddddddddddddddddfffdddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccccddddddddfddddddddddddddddddddddddddddddddddddddddddddddfdddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccdddddddddfdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccdddddddddfdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccdddddddddddddddddddddddddddddddddddddddfdddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccddddddddddddddddddddddddddddddddddddddffdddddddddddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccdddddddddddddddddddddddddddddddddddddfdddddddddddddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccddddddddddddddddddddddddddddddddddddfddddddddddddddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccdddddddddddddfffdddddddddddddddddddddfdddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccddddddddddddffdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccddddddddddddfddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccddddddddddddfddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccddddddddddddfddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccddddddddddddfddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddfdddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccddddddddddddddddddddddddddddddddddddddddddddddddddfddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccddddddddddddddddddddddddddddddddddddddddddddddddffdddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccddddddddddddddddddddddddddddddddddddddddddddddddfddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddfdddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccddddddddddddddddddddddddddddddddddddddddddddddfdddddddddddddddddddddddddfddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccddddddddddddddddddddddddddddddddddddddddddddddfdddddddddddddddddddddddddfddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfdddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccddddddddddddddddddddddddddfddddddddddddddddddddddddddddddddddddddddddddfdddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccdddddddddddddddddddddddddfddddddddddddddddddddddddddddddddddddddddddddfddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccddddddddddddddddddddddddfdddddddddddddddddddddddddddddddddddddddddddddfddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccddddddddddddddddddddddddfdddddddddddddddddddddddddddddddddddddddddddddfddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccdddddddddddddddddddddddfdddddddddddddddddddddddddddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccddddddddddddddddddddddfddddddddddddddddddddddddddddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccddddddddddddddddddddddfddddddddddddddddddddddddddddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccddddddddddddddddddddddddddddddddddddddddffdddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccccdddddddddddddddddddddddddddddddddddddddfdddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccccddddddddddddddddddddddddddddddddddddddfddddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccdddddddddddddddddddddddddddddddddddddfdddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccdddddddddddddddddddddddddddddddddddddfdddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccccccdddddddddddddddddddddddddddddddddddfdddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccddddddddddddddddddddddddddddddddddfddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccccccccdddddddddddddddddddddddddddddddddfdddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccdddddddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccdddddddddddddddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        ccccccccccccccccccccccccccccccccccccccccccdddddddddddddddddddddddddccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccdddddddddddddddddddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        `)
+    tiles.setTilemap(tilemap`level5`)
+    tiles.placeOnRandomTile(mySprite, assets.tile`myTile27`)
 }
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile18`, function (sprite, location) {
+    controller.moveSprite(mySprite, 75, 50)
+})
+function level2 () {
+    tiles.setTilemap(tilemap`level3`)
+    tiles.placeOnRandomTile(mySprite, assets.tile`myTile3`)
+}
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile16`, function (sprite, location) {
+    controller.moveSprite(mySprite, 75, 50)
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile2`, function (sprite, location) {
+    controller.moveSprite(mySprite, 75, 0)
+})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile14`, function (sprite, location) {
     game.showLongText("Next level! enjoy your lunch!", DialogLayout.Bottom)
     level2()
@@ -170,7 +331,7 @@ mySprite = sprites.create(img`
 controller.moveSprite(mySprite, 75, 0)
 scene.cameraFollowSprite(mySprite)
 jump = 0
-level1()
+level3()
 forever(function () {
     mySprite.ay = 200
 })
