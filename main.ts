@@ -180,7 +180,6 @@ function level2 () {
     tiles.placeOnRandomTile(mySprite, assets.tile`myTile3`)
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile16`, function (sprite, location) {
-    mySprite.ay = -100
     controller.moveSprite(mySprite, 75, 50)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile2`, function (sprite, location) {
